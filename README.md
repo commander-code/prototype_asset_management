@@ -214,7 +214,7 @@ It uses Docker for containerization and GitHub Actions for CI/CD automation.
 
 ## 🙋‍♂️ Contact
 
-For questions or feedback, reach out to me via email or connect with me on LinkedIn.
+For questions or feedback, reach out to me via email [efeogheneevans@gmail.com] or connect with me on LinkedIn via https://www.linkedin.com/in/efeoghene-evangelist-55318420a/
 
 ---
 
