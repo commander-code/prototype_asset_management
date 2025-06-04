@@ -9,6 +9,7 @@ Follow the instructions in the backend and frontend folders to set up and run th
 Absolutely! Below is the **complete `README.md` file in GitHub-compatible markdown format**, ready to be **copied and pasted directly into your GitHub repository**. You can place this in the root of your project, and it will render beautifully on GitHub.
 
 ---
+⚠️ Disclaimer : This is a prototype developed as part of an internship project for demonstration, learning, and educational purposes only. It is not intended for production use and may require additional testing, hardening, and feature development before deployment in a real-world financial environment. 
 
 # 🏦 Banking Asset Management Platform (BAMP)
 
@@ -221,5 +222,6 @@ For questions or feedback, reach out to me via email or connect with me on Linke
 
 This project is licensed under the **MIT License**.
 
+⚠️ Disclaimer : This is a prototype developed as part of an internship project for demonstration, learning, and educational purposes only. It is not intended for production use and may require additional testing, hardening, and feature development before deployment in a real-world financial environment. 
 ---
 
