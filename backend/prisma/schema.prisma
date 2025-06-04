@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum AssetType {
+  HARDWARE
+  SOFTWARE
+  DOCUMENT
+  INTELLECTUAL_PROPERTY
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String    @unique
+  passwordHash  String
+  role          Role      @relation(fields: [roleId], references: [id])
+  roleId        Int
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  assets        Asset[]   @relation("AssignedAssets")
+}
+
+model Role {
+  id          Int    @id @default(autoincrement())
+  name        String // e.g., "Admin", "IT", "Compliance"
+  permissions String // comma-separated or JSON string
+  users       User[]
+}
+
+model Asset {
+  id             Int          @id @default(autoincrement())
+  name           String
+  type           AssetType
+  riskLevel      RiskLevel
+  location       String       // e.g., Branch ID or Office location
+  assignedTo     User?        @relation("AssignedAssets", fields: [assignedToId], references: [id])
+  assignedToId   Int?
+  purchaseDate   DateTime
+  expiryDate     DateTime?
+  complianceFlag Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  auditLogs      AuditLog[]
+}
+
+model AuditLog {
+  id          Int      @id @default(autoincrement())
+  asset       Asset    @relation(fields: [assetId], references: [id])
+  assetId     Int
+  actionType  String   // e.g., "CREATE", "UPDATE", "DELETE", "ASSIGN"
+  performedBy User     @relation(fields: [performedById], references: [id])
+  performedById Int
+  timestamp   DateTime @default(now())
+}
+
+model ComplianceReport {
+  id           Int      @id @default(autoincrement())
+  asset        Asset    @relation(fields: [assetId], references: [id])
+  assetId      Int
+  status       String   // e.g., "COMPLIANT", "NON-COMPLIANT"
+  lastChecked  DateTime @default(now())
+  regulatory   String   // e.g., "KYC", "AML", "GDPR"
+}
